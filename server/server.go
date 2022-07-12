@@ -23,3 +23,8 @@ func InitServer() Server {
 	return server
 
 }
+
+func configServer() (*mux.Router, error) {
+	r := mux.NewRouter()
+
+}
