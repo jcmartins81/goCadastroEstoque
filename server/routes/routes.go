@@ -12,9 +12,11 @@ type Route struct {
 	Function               func(http.ResponseWriter, *http.Request)
 	RequiresAuthentication bool
 }
+
 //ConfigRouter vai....
 func ConfigRouter(r *mux.Router) *mux.Router {
-	routes := loginRoute
+	routes := routesUsers
+	routes = append(routes, loginRoute)
 
 	for _, route := range routes {
 		if route.RequiresAuthentication {
