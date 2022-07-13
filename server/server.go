@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/jcmartins81/iesesEstoque/server/routes"
 )
 
 type Server struct {
@@ -15,16 +16,13 @@ type Server struct {
 func InitServer() Server {
 	var server Server
 	var err error
+
 	server.port, err = strconv.Atoi(os.Getenv("PORT_API"))
 	if err != nil {
 		server.port = 9000
 	}
+	router := mux.NewRouter()
+	server.router = routes.ConfigRouter(router)
 
 	return server
-
-}
-
-func configServer() (*mux.Router, error) {
-	r := mux.NewRouter()
-
 }
